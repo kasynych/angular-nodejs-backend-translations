@@ -1,0 +1,81 @@
+<div class="clearfix" *ngIf="project != null && language != null">
+  <div class="form-group pull-right">
+    <a (click) = "refresh()" href="javascript:void(0)"><i class="fa fa-refresh fa-2x fa-fw"></i></a>
+  </div>
+</div>
+<nav aria-label="paging" *ngIf="data != null && (state == 'init' || state == 'load' || state == 'load_empty') ">
+  <ul class="pager">
+    <li><a (click)="loadPage(pagination.page-1)">Previous</a></li>
+    <li><a (click)="loadPage(pagination.page>0?pagination.page+1:2)">Next</a></li>
+  </ul>
+</nav>
+<table class="table table-striped table-hover list" id="translations" *ngIf="data != null && data.length > 0">
+  <thead>
+    <th>ID</th>
+    <th>Content</th>
+    <th>Type</th>
+    <th>Moderator Comments</th>
+    <th>Audio</th>
+    <th>Size</th>
+    <th>Old Audio</th>
+    <th>Old Audio Size</th>
+    <th>Size relative to average</th>
+    <th style="width:210px;">Actions</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let t of data;let i=index">
+      <td>{{t.id}}</td>
+      <td>{{t.text}}</td>
+      <td class="text-capitalize">
+        <span *ngIf="t.audio().s3_version_id.length > 0">{{t.audio().instructions}}</span>
+        <span *ngIf="t.audio().s3_version_id.length == 0">No Audio</span>
+      </td>
+      <td>
+        <div class="md-form">
+          <textarea 
+            name="translation_note_{{t.english.toLocaleLowerCase().replace(' ','')}}"
+            [(ngModel)]="t.audio().note.text"
+            class="md-textarea"
+            spellcheck="false"
+            (focus) = "TNoteFocus($event,t)"
+            (click) = "TNoteClick($event,t)"
+            (blur) = "TNoteBlur($event,t)"
+            tabindex="{{i+1}}"
+            ></textarea>
+        </div>
+        <div *ngIf = "t.audio().note.state=='focus'" class="warning-color animated flipInX" data-wow-duration="0.5s">
+          <button type="button" class="btn btn-primary btn-xs" (click)="TNoteSaveClick($event,t)">Save</button>
+          <button type="button" class="btn blue-grey btn-xs" (click)="TNoteCancelClick($event,t)">Cancel</button>
+        </div>
+      </td>
+      <td>
+        <audio controls style="width:100px" *ngIf="t.audio().s3_version_id.length > 0">
+          <source src="{{t.audio().url()}}" type="audio/mpeg">
+        Your browser does not support the audio element.
+        </audio>
+      </td>
+      <td>{{t.audio().filesize}}</td>
+      <td>
+        <audio controls style="width:100px" *ngIf="t.prev_audio().s3_version_id.length > 0">
+          <source src="{{t.prev_audio().url()}}" type="audio/mpeg">
+        Your browser does not support the audio element.
+        </audio>
+      </td>
+      <td>{{t.prev_audio().filesize}}</td>
+      <td>50</td>
+      <td>
+        <div class="form-group" *ngIf="t.audio().s3_version_id.length > 0">
+          <div><button class="btn btn-success btn-xs" (click)="approveTrAuClick($event,t)" *ngIf="t.audio().instructions!='approved'">Approve</button></div>
+          <div><button type="button" class="btn btn-warning btn-xs" (click)="rejectTrAuClick($event,t)" *ngIf="t.audio().instructions!='change needed'">Change needed</button></div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="alert alert-info notification" *ngIf="data != null && data.length==0 && ( state == 'load_empty' )">Empty Result</div>
+<nav aria-label="paging" *ngIf="data != null && (state == 'init' || state == 'load' || state == 'load_empty') ">
+  <ul class="pager">
+    <li><a (click)="loadPage(pagination.page-1)">Previous</a></li>
+    <li><a (click)="loadPage(pagination.page>0?pagination.page+1:2)">Next</a></li>
+  </ul>
+</nav>

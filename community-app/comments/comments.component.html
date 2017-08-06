@@ -1,0 +1,20 @@
+<div class="popup well panel panel-primary card fade-in" id="chat">
+  <div class="panel-heading">Chat</div>
+  <div class="panel-body">
+    <div id="comments">
+      <ul class="list-group" *ngIf="data !== null && (state=='display' || state=='creating comment')">
+        <li class="list-group-item" *ngFor="let comment of data">
+          <div class="comment">{{comment.text}}</div>
+          <div class="meta"><div class="comment_date">{{comment.created | date:'medium'}}</div><div class="comment_author">{{comment.user.username}}</div></div>
+        </li>
+      </ul>
+      <div *ngIf="data !== null && data!==null && data.length==0 && state=='display'" class="mb-20">No messages yet</div>
+      <div *ngIf="state=='loading'">Loading...</div>
+    </div>
+    <form class="input-group" id="chat_comment_field">
+      <div class="md-form"><input mdbActive class="form-control" type="text" id="{{_translation.id}}" name="comment" (keyup)="chatCommentKeyUp($event)" [(ngModel)]="comment" />
+                <label for="{{_translation.id}}" data-error="wrong" data-success="right" class="">Type your message...</label><span class="material-input"></span></div>
+      <span class="input-group-btn"style="padding-right:0"> <a type="submit" class="btn btn-sm" style="color:#333 !important" (click)="chatCommentSubmit($event)"><i class="fa fa-chevron-right"></i><div class="ripple-container"></div></a> </span>
+    </form>
+  </div>
+</div>

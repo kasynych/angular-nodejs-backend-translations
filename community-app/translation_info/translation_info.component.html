@@ -1,0 +1,21 @@
+<div class="popup well panel panel-primary card fade-in" id="translation-info">
+  <div class="panel-heading">Additional Data</div>
+  <div class="panel-body">
+    <p class="text-center" *ngIf="data.image().s3_version_id!=''">
+      <img src="{{data.image().url()}}" />
+    </p>
+    <h3 *ngIf="data.topic!=''">
+      {{data.topic}}
+    </h3>
+    <h4 *ngIf="data.subtopic!=''">
+      {{data.subtopic}}
+    </h4>
+    <p>
+      <audio controls>
+        <source src="{{data.audio().url()}}" type="audio/mpeg">
+      Your browser does not support the audio element.
+      </audio>
+    </p>
+    <p *ngFor="let field of walkMisc()"><b *ngIf="field.value==''">{{field.key}}</b><span *ngIf="field.value!=''">{{field.key}}: {{field.value}}</span></p>
+  </div>
+</div>

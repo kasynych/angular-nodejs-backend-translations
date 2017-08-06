@@ -1,0 +1,17 @@
+#message {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 5;
+  text-transform: capitalize;
+}
+
+#message.fade-out {
+  -webkit-animation-duration: 3s; /* Safari 4.0 - 8.0 */
+  animation-duration: 3s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  -webkit-animation-name: fade-out; /* Safari 4.0 - 8.0 */
+  animation-name: fade-out;
+  display: block;
+}

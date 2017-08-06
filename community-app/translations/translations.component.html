@@ -1,0 +1,75 @@
+<div class="lter b-b wrapper-md mb-10">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1 class="font-thin h3 m-0">Translations</h1>
+    </div>
+  </div>
+</div>
+
+<div class="form-inline clearfix">
+  <div class="form-group pull-right">
+    <a (click) = "refresh()" href="javascript:void(0)"><i class="fa fa-refresh fa-2x fa-fw"></i></a>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-9">
+    <nav aria-label="paging" *ngIf="data != null && (state == 'init' || state == 'load' || state == 'load_empty')">
+      <ul class="pager">
+        <li><a (click)="loadPage(pagination.page-1)">Previous</a></li>
+        <li><a (click)="loadPage(pagination.page>0?pagination.page+1:2)">Next</a></li>
+      </ul>
+    </nav>
+    <table class="table table-striped table-hover list" id="translations" *ngIf="data != null && data.length > 0">
+      <thead>
+        <tr>
+          <th style="width:40px !important">№</th>
+          <th>Type</th>
+          <th >English</th>
+          <th>{{language.name}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let translation of data; let i=index">
+          <td style="width:40px !important">{{i+1}}</td>
+          <td>{{translation.status}}</td>
+          <td>{{translation.english}}</td>
+          <td class="translation">
+            <div class="md-form">
+              <textarea 
+                name="translation_{{translation.english.toLocaleLowerCase().replace(' ','')}}"
+                [(ngModel)]="translation.text"
+                (keyup)="translationKeyUp($event,translation)"
+                (focus)="translationFocus($event,translation)"
+                (blur)="translationBlur($event,translation)"
+                class="md-textarea"
+                spellcheck="false"></textarea>
+              <p *ngIf = "translation.error != null" class="bg-danger translation_message">
+                {{translation.error}}&nbsp;
+                <button type="button" class="btn btn-default  btn-xs" (click)="cancelTransationClick($event,translation)">Cancel</button>&nbsp;
+                <button type="button" class="btn btn-primary  btn-xs" (click)="ignoreTransationClick($event,translation)">Continue</button>
+              </p>
+              <p *ngIf = "translation.error == null && translation.state == 'not stored'" class="bg-warning translation_message">
+                Translation is not stored
+              </p>
+              <p *ngIf = "translation.error == null && translation.state == 'storing'" class="bg-warning translation_message">
+                Storing...
+              </p>
+
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="alert alert-info notification" *ngIf="data.length==0 && (state == 'load_empty') ">Empty Result</div>
+    <nav aria-label="paging" *ngIf="data != null && (state == 'init' || state == 'load' || state == 'load_empty')">
+      <ul class="pager">
+        <li><a (click)="loadPage(pagination.page-1)">Previous</a></li>
+        <li><a (click)="loadPage(pagination.page>0?pagination.page+1:2)">Next</a></li>
+      </ul>
+    </nav>
+  </div> 
+  <div class="col-sm-3">
+    <chat [translation]="selected_translation" *ngIf="selected_translation != null"></chat>
+    <translation-info [translation]="selected_translation" *ngIf="selected_translation != null"></translation-info>
+  </div>
+</div>

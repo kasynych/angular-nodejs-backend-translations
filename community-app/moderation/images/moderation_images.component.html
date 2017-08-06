@@ -1,0 +1,74 @@
+<div class="clearfix" *ngIf="project != null">
+  <div class="form-group pull-right">
+    <a (click) = "refresh()" href="javascript:void(0)"><i class="fa fa-refresh fa-2x fa-fw"></i></a>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-9">
+    <nav aria-label="paging" *ngIf="data != null && (state == 'init' || state == 'load' || state == 'load_empty')">
+      <ul class="pager">
+        <li><a (click)="loadPage(pagination.page-1)">Previous</a></li>
+        <li><a (click)="loadPage(pagination.page>0?pagination.page+1:2)">Next</a></li>
+      </ul>
+    </nav>
+    <table class="table table-striped table-hover list" id="translations" *ngIf="data != null && data.length > 0">
+      <thead>
+        <th>ID</th>
+        <th>Content</th>
+        <th>Type</th>
+        <th>Moderator Comments</th>
+        <th>Size</th>
+        <th>Old Image Size</th>
+        <th>Size relative to average</th>
+        <th style="width:150px;">Actions</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let t of data;let i=index" (click)="translationRowClick($event,t)">
+          <td>{{t.id}}</td>
+          <td>{{t.text}}</td>
+          <td>
+            <span *ngIf="t.image().s3_version_id.length > 0">{{t.image().instructions}}</span>
+            <span *ngIf="t.image().s3_version_id.length == 0">No Image</span>
+          </td>
+          <td>
+            <div class="md-form">
+              <textarea 
+                name="translation_note_{{t.english.toLocaleLowerCase().replace(' ','')}}"
+                [(ngModel)]="t.image().note.text"
+                class="md-textarea"
+                spellcheck="false"
+                (focus) = "TNoteFocus($event,t)"
+                (click) = "TNoteClick($event,t)"
+                (blur) = "TNoteBlur($event,t)"
+                tabindex="{{i+1}}"
+                ></textarea>
+            </div>
+            <div *ngIf = "t.image().note.state=='focus'" class="warning-color z-depth-1 animated flipInX">
+              <button type="button" class="btn btn-primary btn-xs" (click)="TNoteSaveClick($event,t)">Save</button>
+              <button type="button" class="btn blue-grey btn-xs" (click)="TNoteCancelClick($event,t)">Cancel</button>
+            </div>
+          </td>
+          <td>{{t.image().filesize}}</td>
+          <td>{{t.prev_image().filesize}}</td>
+          <td>50</td>
+          <td>
+            <div class="form-group" *ngIf="t.image().s3_version_id.length > 0">
+              <div><button class="btn btn-success btn-xs" (click)="approveTrImClick($event,t)" *ngIf="t.image().instructions!='approved'">Approve</button></div>
+              <div><button type="button" class="btn btn-warning btn-xs" (click)="rejectTrImClick($event,t)" *ngIf="t.image().instructions!='change needed'">Change needed</button></div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="alert alert-info notification" *ngIf="data != null && data.length==0 && ( state == 'load_empty' )">Empty Result</div>
+    <nav aria-label="paging" *ngIf="data != null && (state == 'init' || state == 'load' || state == 'load_empty')">
+      <ul class="pager">
+        <li><a (click)="loadPage(pagination.page-1)">Previous</a></li>
+        <li><a (click)="loadPage(pagination.page>0?pagination.page+1:2)">Next</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="col-sm-3">
+    <translation-info [translation]="selected_translation" *ngIf="selected_translation != null"></translation-info>
+  </div>
+</div>

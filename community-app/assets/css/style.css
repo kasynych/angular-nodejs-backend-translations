@@ -1,0 +1,178 @@
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none !important;
+  }
+}
+
+@-webkit-keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none !important;
+  }
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes primary_btn_loading {
+  0% {
+    background-color: #6f9fed;
+    left: 0px;
+    top: 0px;
+  }
+  100% {
+    background-color: #c0cfe8;
+    left: 0px;
+    top: 0px;
+  }
+}
+
+/* Standard syntax */
+@keyframes primary_btn_loading {
+  0% {
+    background-color: #6f9fed;
+    left: 0px;
+    top: 0px;
+  }
+  100% {
+    background-color: #c0cfe8;
+    left: 0px;
+    top: 0px;
+  }
+}
+
+.btn.btn-primary.loading {
+  -webkit-animation-name: primary_btn_loading; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 2s; /* Safari 4.0 - 8.0 */
+  -webkit-animation-iteration-count: infinite; /* Safari 4.0 - 8.0 */
+  -webkit-animation-direction: alternate; /* Safari 4.0 - 8.0 */
+  animation-name: primary_btn_loading;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.popup {
+  padding: 0 !important;
+  background-color: white !important;
+}
+
+table td .md-form {
+  margin-bottom: 0px;
+}
+
+nav.navbar.navbar-fixed-top {
+  background-color: white;
+}
+
+.card-primary {
+  background-color: #0275d8;
+  border-color: #0275d8;
+}
+
+.card-danger {
+  background-color: #d9534f;
+  border-color: #d9534f;
+}
+
+.card-warning {
+  background-color: #f0ad4e;
+  border-color: #f0ad4e;
+}
+
+.card-info {
+  background-color: #5bc0de;
+  border-color: #5bc0de;
+}
+
+.card-success {
+  background-color: #5cb85c;
+  border-color: #5cb85c;
+}
+
+.default-color {
+  background-color: #2bbbad !important;
+}
+
+.card {
+  width: auto;
+}
+
+.card.panel {
+  width: 100%;
+}
+
+.card.panel audio {
+  width: 100%;
+}
+
+.card .card-block {
+  position: relative;
+}
+
+.card-block {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 1.25rem;
+}
+
+table.list th {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+table.list tbody .form-group,
+table.list tbody label {
+  margin: 0;
+}
+
+.fade-out {
+  -webkit-animation-name: fade-out; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
+  animation-name: fade-out;
+  animation-duration: 4s;
+  animation-fill-mode: forwards;
+}
+
+.pager a, .pager .disabled > a {
+    color: #337ab7 !important;
+}
+
+.subheading{
+  text-transform: capitalize;
+}
+
+.progress .progress-bar {
+    height: inherit;
+}

@@ -1,0 +1,18 @@
+<ul id="navigation" class="flex-column">
+  <li *ngFor="let item of items" class="{{item.css_class}}">
+    <a routerLink="{{item.href}}" *ngIf="item.href != ''" routerLinkActive="active" style="padding-left:10px">{{item.title}}</a>
+    <a href = "javascript:void(0)" *ngIf="item.href == ''"><i class="fa fa-angle-right"></i>{{item.title}}</a>
+    <ul *ngIf="item.subitems.length != 0" class="flex-column submenu">
+        <li *ngFor="let subitem of item.subitems" class="{{subitem.css_class}}">
+            <a routerLink="{{subitem.href}}" *ngIf="subitem.href != ''" routerLinkActive="active"><i class="fa fa-angle-right"></i>{{subitem.title}}</a>
+            <a href="javascript:void(0)" *ngIf="subitem.href == ''">{{subitem.title}}</a>
+            <ul *ngIf="subitem.subitems.length != 0" class="flex-column submenu">
+                <li *ngFor="let subsubitem of subitem.subitems" class="{{subsubitem.css_class}}">
+                    <a routerLink="{{subsubitem.href}}" *ngIf="subsubitem.href != ''" routerLinkActive="active"><i class="fa fa-angle-right"></i>{{subsubitem.title}}</a>
+                    <a href="javascript:void(0)" *ngIf="subsubitem.href == ''">{{subsubitem.title}}</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+  </li>
+</ul>

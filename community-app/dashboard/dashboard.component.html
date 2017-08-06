@@ -1,0 +1,33 @@
+<div class="lter b-b wrapper-md mb-10">
+  <div class="row">
+    <div class="col-sm-6 col-xs-12">
+      <h1 class="font-thin h3 m-0">Dashboard</h1>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="data != null && account != null">
+  <!-- Translator dashboard -->
+  <div class="row" *ngIf="account.role.toLowerCase()=='translator'">
+    <div class="col-md-4" ng-reflect-hidden="false" *ngFor="let project of account.projects; let i=index">
+      <div class="r3_weather {{header_css_classes[((i+1)%header_css_classes.length)-1]}} mb-20">
+        <div class="wid-weather wid-weather-small">
+          <div class="boxs-widget {{header_css_classes[((i+1)%header_css_classes.length)-1]}} text-center p-30 -t"><h1 class="m-0">{{project.project_name}}</h1></div>
+          <div class="clearfix"></div>
+          <div class="slimScrollDiv" style="width: auto; height: 100%; overflow: hidden; position: relative;"><div class="weekdays bg-white slim-scroll" style="width: auto; height: 100%; overflow: hidden;">
+              <ul class="list-unstyled ps-container ps-active-y" *ngFor="let lang of account.languages;let j=index">
+                <li><span class="day"><b>{{lang.name}}</b></span><br/>
+                <span class="day">New to translate</span><span class="temp">{{data[project.id][lang.id].new}}</span><br/>
+                <span class="day">For Review</span><span class="temp">{{data[project.id][lang.id].for_review}}</span><br/>
+                <span class="day">Answer User Questions</span><span class="temp">{{data[project.id][lang.id].answer_user_questions}}</span></li>
+              </ul>
+          </div><div class="slimScrollBar" style="background: rgb(0, 0, 0); border-radius: 7px; top: 0px; width: 7px; height: 241.39px; right: 1px; display: none; position: absolute; z-index: 99; opacity: 0.4;"></div><div class="slimScrollRail" style="background: rgb(51, 51, 51); border-radius: 7px; top: 0px; width: 7px; height: 100%; right: 1px; display: none; position: absolute; z-index: 90; opacity: 0.2;"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Translator dashboard: END -->
+</div>
+<div *ngIf="state == 'loading' && data == null || account == null" class="text-muted">
+  Loading...
+</div>

@@ -1,0 +1,57 @@
+<div class="lter b-b wrapper-md mb-10">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1 class="font-thin h3 m-0">{{form_title}}</h1>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-4 boxs">
+    <form  (ngSubmit)="save($event)" id="user_form" class="boxs-body" #userForm="ngForm">
+      <input type="hidden" id="user_id" [(ngModel)]="data.id" name="id" />
+      <div class="md-form">
+        <input type="text" mdbActive autocomplete="off" class="form-control" id="username" name="username" [(ngModel)]="data.username" required value="{{data.username}}">
+        <label for="username" class="{{editMode()?'active':''}}">Username</label>
+      </div>
+      <div class="md-form" >
+        <input type="password" mdbActive class="form-control" id="password" name="password" [(ngModel)]="data.password" required />
+        <label for="password" class="{{editMode()?'active':''}}">Password</label>
+      </div>
+      <div class="form-group checkbox">
+        <label><input type="checkbox" id="status" name="status" class="form-control" [(ngModel)]="data.valid" value="1" /><span class="checkbox-material"><span class="check"></span></span>Valid</label>
+      </div>
+      <div class="form-group">
+        <label for="user_type">User Type</label>
+        <select id="user_type" name="type" [(ngModel)]="data.type" class="form-control">
+          <option value="Super Admin">Super Admin</option>
+          <option value="Admin">Admin</option>
+          <option value="Moderator">Moderator</option>
+          <option value="Developer">Developer</option>
+          <option value="Designer">Designer</option>
+          <option value="Private Collaborator">Private Collaborator</option>
+          <option value="Public Collaborator">Public Collaborator</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="user_role">User Role</label>
+        <select id="user_role" name="role" [(ngModel)]="data.role" class="form-control">
+          <option value="Super Admin">Super Admin</option>
+          <option value="Admin">Admin</option>
+          <option value="Moderator">Moderator</option>
+          <option value="Developer">Developer</option>
+          <option value="Designer">Designer</option>
+          <option value="Reviewer">Reviewer</option>
+          <option value="Translator">Translator</option>
+          <option value="Audio Editor">Audio Editor</option>
+          <option value="Player">Player</option>
+          <option value="ProPlayer">ProPlayer</option>
+        </select>
+      </div>
+      <div class="form-group row">
+        <button type="submit" class="btn  btn-primary pull-left">Save</button>
+        <button (click)="goBack()" class="btn  btn-default pull-right" type="button">Back</button>
+      </div>
+    </form>
+  </div>
+</div>

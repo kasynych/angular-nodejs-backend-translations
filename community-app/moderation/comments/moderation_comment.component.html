@@ -1,0 +1,47 @@
+<div class="container-fluid">
+<div class="row">
+  <div class="col-sm-6 boxs animated fadeInRight" style="margin:auto auto" *ngIf="data!=null" id="comment_moderation_form">
+    <div class="boxs-body">
+      <h4 class="mt-0">Comment</h4>
+      <div *ngIf="data!=null">
+        <div class="pull-left">
+          <strong class="">{{data.text}}</strong>
+          <div><small><em>{{data.user.username}}&nbsp;{{data.created| date:"dd/MM/yy"}}</em></small></div>
+        </div>
+        <div>
+          <a class="m-10" href="javascript:void(0)" (click)="editCommentClick($event)"><i class="fa fa-edit fa-lg" aria-hidden="true"></i></a>
+        </div>
+        <div class="md-form" *ngIf="parents.length > 0" style="height:0px;">
+          <textarea class="md-textarea animated {{show_edit_textarea===true?'bounceIn':show_edit_textarea===false?'bounceOutLeft':''}}" id="comment_edit" [ngStyle]="{ 'height': '0px', 'display': show_edit_textarea == null?'none':'block' }">{{data.text}}
+
+Reply to
+{{parents.reverse()[0].text}}</textarea>
+        </div>
+      </div>
+      <div class="well">
+      <h4 class="mt-0">Comments history</h4>
+        <ul class="list-unstyled">
+          <li class="media" *ngFor="let parent of parents.reverse()">
+            <div class="media-body">
+              {{parent.text}}
+              <div><small><em>{{parent.user.username}}&nbsp;{{parent.created| date:"dd/MM/yy"}}</em></small></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="form-group row clearfix">
+        <div class="col-sm-7">
+          <div><button type="button" class="btn btn-success" (click)="submitClick($event,'approve')">Approve</button></div>
+          <div><button class="btn btn-success" type="button" (click)="submitClick($event,'approve_response')">Approve and mark translator response</button></div>
+          <div><button class="btn btn-success" type="button" (click)="submitClick($event,'approve_check')">Approve and mark moderator check item</button></div>
+          <div><button class="btn btn-default" type="button" (click)="submitClick($event,'skip')">Skip</button> </div>
+        </div>
+        <div class="col-sm-5">
+          <div><button class="btn btn-danger pull-right clearfix" type="button" (click)="submitClick($event,'reject')">Disapprove</button></div>
+          <div><button class="btn btn-danger pull-right clearfix" type="button" (click)="submitClick($event,'ban')">Ban User</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

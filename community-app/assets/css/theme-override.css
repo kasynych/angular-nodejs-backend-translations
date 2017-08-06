@@ -1,0 +1,205 @@
+body {
+  padding-top: 0;
+}
+
+.progress-bar {
+  background-color: #5f79f0 !important;
+}
+
+.panel.panel-primary > .panel-heading {
+  background-color: #5f79f0;
+}
+
+h1 button {
+  margin-left: 10px;
+}
+
+table th {
+  white-space: nowrap;
+}
+
+.main {
+  position: relative;
+}
+
+#leftmenu {
+  margin-left: 15px;
+}
+
+.nav.nav-sidebar.submenu {
+  padding-left: 5px;
+  margin-bottom: 0px;
+}
+
+#navigation .nav.nav-sidebar.submenu li > a {
+  font-size: 13px;
+  position: relative;
+  display: block;
+  padding: 8px 0 8px 30px;
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+  font-weight: 300;
+}
+
+#navigation .nav.nav-sidebar.submenu li:hover > a,
+#navigation .nav.nav-sidebar.submenu li.active > a,
+#navigation .nav.nav-sidebar.submenu li > a:focus {
+  color: #5f79f0;
+  background-color: transparent;
+}
+
+#navigation .nav.nav-sidebar.submenu li > a > i {
+  margin-right: 15px;
+}
+
+.navbar .form-group {
+  padding-bottom: 0px;
+  margin-top: 0px;
+}
+
+h1 button.btn {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 10px;
+}
+
+.b-b {
+  padding-bottom: 10px;
+}
+
+.btn {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.form-control {
+  margin-bottom: 0;
+}
+
+#fof {
+  display: block;
+  width: 100%;
+  margin: 100px 0;
+  line-height: 2em;
+  text-align: center;
+}
+#fof .hgroup {
+  text-transform: uppercase;
+}
+#fof .hgroup h1 {
+  margin-bottom: 25px;
+  font-size: 80px;
+}
+#fof .hgroup h1 span {
+  display: inline-block;
+  margin-left: 5px;
+  padding: 2px;
+  border: 1px solid #cccccc;
+  overflow: hidden;
+}
+#fof .hgroup h1 span strong {
+  display: inline-block;
+  padding: 20px 20px 20px;
+  border: 1px solid #cccccc;
+  font-weight: normal;
+}
+#fof .hgroup h2 {
+  font-size: 60px;
+}
+#fof .hgroup h2 span {
+  display: block;
+  font-size: 30px;
+}
+#fof p {
+  margin: 25px 0 0 0;
+  padding: 0;
+  font-size: 16px;
+}
+#fof p:first-child {
+  margin-top: 0;
+}
+
+.table > thead > tr td,
+.table > thead > tr th,
+.table > tbody > tr td,
+.table > tbody > tr th,
+.table > tfoot > tr td,
+.table > tfoot > tr th {
+  border-color: #ddd;
+}
+
+.table-bordered,
+.table-bordered td,
+.table-bordered th {
+  border: 1px solid #ddd !important;
+}
+
+#header.theme-light {
+  z-index: 21;
+  right: auto !important;
+}
+
+.btn.btn-raised.btn-primary,
+.btn.btn-fab.btn-primary,
+.btn-group-raised .btn.btn-primary,
+.input-group-btn .btn.btn-raised.btn-primary,
+.input-group-btn .btn.btn-fab.btn-primary,
+.btn-group-raised.input-group-btn .btn.btn-primary {
+  background-color: #123456;
+  color: #ffffff;
+}
+
+#content {
+  top: 0px !important;
+  z-index: auto !important;
+  margin-left: 250px;
+  position: static !important;
+}
+
+.r3_weather {
+  min-height: auto;
+}
+
+.r3_weather .wid-weather-small .weekdays ul li .day {
+  min-width: 200px;
+}
+
+#navigation {
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  padding-top: 90px;
+  width: 100%;
+}
+
+#navigation > li > a > i {
+  margin-right: 0;
+}
+
+#navigation > li > a {
+  padding: 12px 20px 12px 0px;
+}
+#navigation > li > ul {
+  padding: 12px 20px 12px 25px;
+}
+
+#navigation a {
+  font-size: 1em !important;
+  display: block;
+}
+#navigation a.active {
+  color: #5f79f0;
+}
+
+#navigation a:hover {
+  color: #5f79f0;
+}
+
+.navbar-fixed-top {
+  z-index: 1;
+}
+
+.dropdown-menu a.dropdown-item:hover{
+  color:#000 !important;
+}

@@ -1,0 +1,49 @@
+<div class="lter b-b wrapper-md mb-10">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1 class="font-thin h3 m-0">Moderation</h1>
+      <span class="text-muted subheading lead" *ngIf="moderation_object != null">{{moderation_object}}</span>
+    </div>
+  </div>
+</div>
+
+<nav class="navbar navbar-default" *ngIf="moderation_object == 'audio' || moderation_object == 'images' || moderation_object =='translations'">
+  <div class="d-flex flex-row" style="display:block;width:100%">
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <form class="form-inline" id="moderation-filter">
+      <div class="form-group" *ngIf="moderation_object == 'audio' || moderation_object == 'images' || moderation_object =='translations'">
+        <!-- Basic dropdown -->
+        <div class="btn-group">
+          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Projects</button>
+
+          <div class="dropdown-menu">
+            <a class="dropdown-item" *ngFor="let project of user_projects" (click)="filter.project = project;mdbDropdownClick($event);">{{project.project_name}}</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" *ngIf="moderation_object == 'audio' || moderation_object =='translations'">
+        <!-- Basic dropdown -->
+        <div class="btn-group">
+          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Languages</button>
+
+          <div class="dropdown-menu">
+            <a class="dropdown-item" *ngFor="let language of user_languages" (click)="filter.language = language;mdbDropdownClick($event);">{{language.name}}</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="form-group" *ngIf="moderation_object == 'comments'">
+        <button class="btn btn-primary" type="button">List</button>
+      </div>
+      <div class="form-group" *ngIf="moderation_object == 'comments'">
+        <button class="btn btn-primary" type="button" >Slide</button>
+      </div> -->
+    </form>
+  </div>
+</nav>
+
+<moderation-audio *ngIf="moderation_object == 'audio'" [setProject]="filter.project" [setLanguage]="filter.language"></moderation-audio>
+<moderation-images *ngIf="moderation_object == 'images'" [setProject]="filter.project"></moderation-images>
+<moderation-comment *ngIf="moderation_object == 'comments'"></moderation-comment>
+<moderation-translations *ngIf="moderation_object =='translations'" [setProject]="filter.project" [setLanguage]="filter.language"></moderation-translations>
